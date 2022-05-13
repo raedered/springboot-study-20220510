@@ -62,7 +62,8 @@ public class UserController {
 			cmRespDto = new CMRespDto<String>(-1, "사용 할 수 없는 사용자이름", username);
 			status = HttpStatus.BAD_REQUEST;
 		}else {
-			cmRespDto = new CMRespDto<String>(1, "사용 할 수 있는 사용자이름", username); 
+			cmRespDto = new CMRespDto<String>(1, "사용 할 수 있는 사용자이름", username);
+			status = HttpStatus.OK;
 		}
 		return new ResponseEntity<>(cmRespDto, status);
 	}
@@ -103,11 +104,13 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/account/{username}")
-	public ResponseEntity<?> deleteUer(@PathVariable String username){
+	public ResponseEntity<?> deleteUser(@PathVariable String username){
 		User user = new User();
 		if(!user.getUsername().equals(username)) {
-			return new ResponseEntity<>(new CMRespDto<String>(-1, "회원탈퇴 실패", username), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(new CMRespDto<String>(-1, "회원탈퇴 실패.", username), HttpStatus.BAD_REQUEST);
 		}
+		
+		
 		return new ResponseEntity<>(new CMRespDto<String>(1, "회원탈퇴 성공.", username), HttpStatus.OK);
 	}
 }

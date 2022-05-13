@@ -9,8 +9,10 @@ import lombok.Data;
 @Data
 public class AccountReqDto {
 	@NotBlank
-	private String name;
-	@NotBlank
 	@Email
 	private String email;
+	
+	@NotBlank
+	private String name;
+	
 }
