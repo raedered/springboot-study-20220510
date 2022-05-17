@@ -12,7 +12,6 @@
 	<div id="container">
 		<div class="board-list">
 			<table class="board-list-table">
-				<thead>
 				<tr>
 					<th>번호</th>
 					<th>제목</th>
@@ -26,10 +25,6 @@
 					<td>작성자</td>
 					<td>조회수</td>
 				</tr>
-				</thead>
-				<tbody>
-					
-				</tbody>
 			</table>
 		</div>
 		<div class="board-list-page">
@@ -39,7 +34,6 @@
 			<div>4</div>
 			<div>5</div>
 		</div>
-		
 	</div>
 	<script type="text/javascript" src="/js/board-list.js"></script>
 </body>

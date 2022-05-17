@@ -5,42 +5,32 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 목록</title>
-<link rel="stylesheet" href="/css/board/board-list.css">
+<link rel="stylesheet" href="/css/board/board-dtl.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
 	<div id="container">
 		<div class="board-list">
 			<table class="board-list-table">
-				<thead>
 				<tr>
-					<th>번호</th>
 					<th>제목</th>
+					<td>첫 글입니다</td>
+				</tr>
+				<tr>
 					<th>작성자</th>
+					<td>김재현</td>
+				</tr>
+				<tr>
 					<th>조회수</th>
+					<td>10</td>
 				</tr>
-				
-				<tr class="board-items">
-					<td>번호</td>
-					<td>제목</td>
-					<td>작성자</td>
-					<td>조회수</td>
+				<tr>
+					<th>내용</th>
+					<td><pre>첫글 입니다</pre></td>
 				</tr>
-				</thead>
-				<tbody>
-					
-				</tbody>
 			</table>
 		</div>
-		<div class="board-list-page">
-			<div>1</div>
-			<div>2</div>
-			<div>3</div>
-			<div>4</div>
-			<div>5</div>
-		</div>
-		
 	</div>
-	<script type="text/javascript" src="/js/board-list.js"></script>
+	<script type="text/javascript" src="/js/board-dtl.js"></script>
 </body>
 </html>
