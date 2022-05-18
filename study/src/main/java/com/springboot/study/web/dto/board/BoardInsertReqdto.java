@@ -22,9 +22,8 @@ public class BoardInsertReqdto {
 	
 	public BoardMst toBoardMstEntitiy() {
 		return BoardMst.builder()
-				.board_code(usercode)
-				.board_content(content)
 				.board_title(title)
+				.board_content(content)
 				.board_writer(usercode)
 				.build();
 	}
