@@ -6,7 +6,7 @@ const boardListPage = document.querySelector(".board-list-page");
  load(nowPage);
  
  function load(page){
-	let url = "/board/list?page=" + page;
+	let url = `/api/board/list?page=${page}`;
 	
 	fetch(url)
 	.then(response => {
@@ -16,7 +16,7 @@ const boardListPage = document.querySelector(".board-list-page");
 			throw new Error("비동기 처리 오류");
 		}
 	})
-	.then(result =>{
+	.then(result => {
 		getBoardList(result.data);
 		createPageNumber(result.data[0].boardCountAll);
 		getBoardItems();
@@ -44,10 +44,12 @@ const boardListPage = document.querySelector(".board-list-page");
 
 function createPageNumber(data) {
 	const boardListPage = document.querySelector(".board-list-page");
+	const preNextBtn = document.querySelectorAll(".pre-next-btn");
+	
 	const totalboardCount = data;
 	const totalPageCount = data % 5 == 0 ? data / 5 : (data / 5) + 1;
 	
-	const startIndex = nowPage % 5 == 0 ? page - 4 : nowPage - (nowPage % 5) + 1;
+	const startIndex = nowPage % 5 == 0 ? nowPage - 4 : nowPage - (nowPage % 5) + 1;
 	const endIndex = startIndex + 4 <= totalPageCount ? startIndex + 4 : totalPageCount;
 	
 	let pageStr = ``;
@@ -55,18 +57,26 @@ function createPageNumber(data) {
 	for(let i = startIndex; i <= endIndex; i++){
 		pageStr += `<div>${i}</div>`;
 	}
-	
-	pageStr += `<div>6</div>`;
-	console.log(boardListPage);
+
 	boardListPage.innerHTML = pageStr;
+	
+	preNextBtn[0].onclick = () => {
+		nowPage = startIndex != 1 ? startIndex - 1 : 1; 
+		load(nowPage);
+	}
+	
+	preNextBtn[1].onclick = () => {
+		nowPage = endIndex != totalPageCount ? endIndex + 1 : totalPageCount;
+		load(nowPage);
+	}
 	
 	const pageButton = boardListPage.querySelectorAll("div");
 	for(let i = 0; i <pageButton.length; i++){
-	pageButton[i].onclick = () => {
-		nowPage = pageButton[i].textContent;
-		load(nowPage);
+		pageButton[i].onclick = () => {
+			nowPage = pageButton[i].textContent;
+			load(nowPage);
+		}
 	}
-}
 }
 
 function getBoardList(data) {
@@ -103,7 +113,7 @@ function getBoardItems(){
 	const boardItems = document.querySelectorAll(".board-items");	
 	for(let i = 0; i < boardItems.length; i++) {
 		boardItems[i].onclick = () => {
-			location.href = "/board/dtl/" + boardItems[i].querySelectorAll('td')[0].textContent;
+			location.href = "/board-info/" + boardItems[i].querySelectorAll('td')[0].textContent;
 		}
 	}
 }

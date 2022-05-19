@@ -28,5 +28,13 @@ th {
 
 td {
 	border: 1px solid black;
-	width: 200px;
+	width: 400px;
+}
+
+.option-buttons {
+	display: flex;
+	justify-content: flex-end;
+	
+	margin-top: 10px;
+	width: 50%;
 }

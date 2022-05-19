@@ -1,19 +1,19 @@
+const submitBtn = document.querySelector(".submit-btn");
 const inputItems = document.querySelectorAll(".input-items");
 const textareaItem = document.querySelector(".textarea-item");
-const submitBtn = document.querySelector(".submit-btn");
- 
-/*
-Promise
-*/
 
-/*function test(data) {
+/*
+	Promise
+*/
+/*
+function test(data){
 	return new Promise((resolve, reject) => {
 		if(data > 100){
-			resolve(data);			
+			resolve(data);
 		}else{
-			throw reject(new Error("data가 100보다 작거나 같습니다."));
+			throw reject(new Error("data가 100보다 작거나 같습니다"));
 		}
-	})
+	});
 }
 
 test(500)
@@ -22,12 +22,12 @@ test(500)
 .catch(error => {console.log(error)});*/
 
 
- 
+
 submitBtn.onclick = () => {
 	submit();
 }
- 
-/*function submit() {
+/*
+function submit(){
 	$.ajax({
 		type: "post",
 		url: "/board",
@@ -35,25 +35,27 @@ submitBtn.onclick = () => {
 		data: JSON.stringify({
 			title: inputItems[0].value,
 			content: textareaItem.value,
-			usercode: inputItems.value
+			usercode: inputItems[1].value
 		}),
 		dataType: "text",
 		success: data => {
 			let dataObj = JSON.parse(data);
+			
 			alert(dataObj.msg);
-			location.href = "/board/dtl/" + dataObj.data;	
+			location.href = "/board/dtl/" + dataObj.data;
 		},
-		error:() => {
+		error: () => {
 			alert("비동기 처리 오류");
 		}
-	})
-}*/
+	});
+}
+*/
 
-function submit() {
-	let url = "/board";
+function submit(){
+	let url = "/api/board";
 	
 	let option = {
-		method: "post",
+		method: "POST",
 		headers: {
 			"Content-Type": "application/json"
 		},
@@ -73,7 +75,6 @@ function submit() {
 			throw new Error("정상적인 데이터를 응답받지 못했습니다.");
 		}
 	})
-	.then(data => {/*location.href = "/board/dtl" + data.data;*/})
-	.catch(error => console.log(error));
+	.then(data => {location.href = "/board-info/" + data.data;})
 }
 

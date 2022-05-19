@@ -18,7 +18,7 @@
 				</tr>
 				<tr>
 					<th>작성자</th>
-					<td><input type="text" class="input-items"></td>
+					<td><input type="text" class="input-items" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<th>내용</th>
@@ -28,6 +28,6 @@
 			<button type="button" class="submit-btn">작성하기</button>
 		</div>
 	</div>
-	<script type="text/javascript" src="/js/board-insert.js"></script>
+	<script type="text/javascript" src="/js/board-update.js"></script>
 </body>
 </html>
