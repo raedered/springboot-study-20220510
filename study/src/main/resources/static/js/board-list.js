@@ -1,11 +1,18 @@
-const boardListTable = document.querySelector(".board-list-table");
-const boardListPage = document.querySelector(".board-list-page");
+/**
+ * 
+ */
+ 
+const boardListTable = document.querySelector('.board-list-table');
+const boardListPage = document.querySelector('.board-list-page');
 
- let nowPage = 1;
- 
- load(nowPage);
- 
- function load(page){
+
+
+
+let nowPage = 1;
+
+load(nowPage);
+
+function load(page) {
 	let url = `/api/board/list?page=${page}`;
 	
 	fetch(url)
@@ -21,9 +28,9 @@ const boardListPage = document.querySelector(".board-list-page");
 		createPageNumber(result.data[0].boardCountAll);
 		getBoardItems();
 	})
-	.catch(error => {console.log(error)});
-	
-	/*$.ajax({
+	.catch(error => {console.log(error);});
+	/*
+	$.ajax({
 		type: "get",
 		url: "/board/list",
 		data: {
@@ -43,10 +50,10 @@ const boardListPage = document.querySelector(".board-list-page");
 }
 
 function createPageNumber(data) {
-	const boardListPage = document.querySelector(".board-list-page");
-	const preNextBtn = document.querySelectorAll(".pre-next-btn");
+	const boardListPage = document.querySelector('.board-list-page');
+	const preNextBtn = document.querySelectorAll('.pre-next-btn');	
 	
-	const totalboardCount = data;
+	const totalBoardCount = data;
 	const totalPageCount = data % 5 == 0 ? data / 5 : (data / 5) + 1;
 	
 	const startIndex = nowPage % 5 == 0 ? nowPage - 4 : nowPage - (nowPage % 5) + 1;
@@ -57,11 +64,11 @@ function createPageNumber(data) {
 	for(let i = startIndex; i <= endIndex; i++){
 		pageStr += `<div>${i}</div>`;
 	}
-
+	
 	boardListPage.innerHTML = pageStr;
 	
 	preNextBtn[0].onclick = () => {
-		nowPage = startIndex != 1 ? startIndex - 1 : 1; 
+		nowPage = startIndex != 1 ? startIndex - 1 : 1;
 		load(nowPage);
 	}
 	
@@ -70,32 +77,30 @@ function createPageNumber(data) {
 		load(nowPage);
 	}
 	
-	const pageButton = boardListPage.querySelectorAll("div");
-	for(let i = 0; i <pageButton.length; i++){
-		pageButton[i].onclick = () => {
-			nowPage = pageButton[i].textContent;
-			load(nowPage);
-		}
+	
+	
+	
+	const pageButton = boardListPage.querySelectorAll('div');
+	for(let i = 0; i < pageButton.length; i++){
+	pageButton[i].onclick = () => {
+		nowPage = pageButton[i].textContent;
+		load(nowPage);
 	}
 }
+	
+}
 
-function getBoardList(data) {
-	/*while(boardListTable.hasChildNodes()){
+function getBoardList(data)	{
+	/*
+	while(boardListTable.hasChildNodes()){
 		boardListTable.removeChild(boardListTable.firstChild);
-	}*/
-	/*let tableStr=`
-	<tr>
-		<th>번호</th>
-		<th>제목</th>
-		<th>작성자</th>
-		<th>조회수</th>
-	</tr>
-	`*/
+	}
+	*/
 	const tableBody = boardListTable.querySelector('tbody');
 	let tableStr = ``;
 	
 	for(let i = 0; i < data.length; i++){
-		tableStr +=`
+		tableStr += `
 		<tr class="board-items">
 			<td>${data[i].boardCode}</td>
 			<td>${data[i].title}</td>
@@ -106,14 +111,21 @@ function getBoardList(data) {
 	}
 	
 	tableBody.innerHTML = tableStr;
-	/*boardListTable.innerHTML = tableStr;*/
+	
 }
 
+
+
+
 function getBoardItems(){
-	const boardItems = document.querySelectorAll(".board-items");	
-	for(let i = 0; i < boardItems.length; i++) {
+	const boardItems = document.querySelectorAll('.board-items');
+	for(let i = 0; i < boardItems.length; i++){
 		boardItems[i].onclick = () => {
 			location.href = "/board-info/" + boardItems[i].querySelectorAll('td')[0].textContent;
 		}
 	}
 }
+
+
+
+

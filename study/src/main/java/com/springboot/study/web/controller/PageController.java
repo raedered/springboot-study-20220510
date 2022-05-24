@@ -3,6 +3,7 @@ package com.springboot.study.web.controller;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -26,13 +27,18 @@ public class PageController {
 		return "auth/signin";
 	}
 	
+	@GetMapping("/user/account/mypage")
+	public String mypage() {
+		return "account/mypage";
+	}
+	
 	@GetMapping("/board/list")
-	public String boardList(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+	public String boardList() {
 		return "board/board-list";
 	}
 	
 	@GetMapping("/board-info/{boardCode}")
-	public String boardDtl(@PathVariable int boardCode){
+	public String boardDtl(@PathVariable int boardCode) {
 		return "board/board-dtl";
 	}
 	

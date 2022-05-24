@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 작성</title>
-<link rel="stylesheet" href="/css/board/board-update.css">
+<link rel="stylesheet" href="/css/board/board-insert.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
@@ -22,12 +22,14 @@
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><textarea class = "textarea-item"></textarea></td>
+					<td><textarea class="textarea-item"></textarea></td>
 				</tr>
 			</table>
 			<button type="button" class="submit-btn">작성하기</button>
 		</div>
+		
 	</div>
+	
 	<script type="text/javascript" src="/js/board-insert.js"></script>
 </body>
 </html>

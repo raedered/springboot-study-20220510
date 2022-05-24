@@ -7,6 +7,6 @@
 <title>메인페이지</title>
 </head>
 <body>
-	메인페이지 입니다
+	메인페이지입니다.
 </body>
 </html>

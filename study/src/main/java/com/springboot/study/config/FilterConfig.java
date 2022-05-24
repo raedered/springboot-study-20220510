@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import com.springboot.study.filter.TestFilter1;
 import com.springboot.study.filter.TestFilter2;
 
-@Configuration
-public class FilterConfig { //필터 관리해주는곳
+//@Configuration
+public class FilterConfig {
 	
 	@Bean
 	public FilterRegistrationBean<TestFilter1> filter1(){
@@ -22,7 +22,8 @@ public class FilterConfig { //필터 관리해주는곳
 	public FilterRegistrationBean<TestFilter2> filter2(){
 		FilterRegistrationBean<TestFilter2> bean = new FilterRegistrationBean<TestFilter2>(new TestFilter2());
 		bean.addUrlPatterns("/*");
-		bean.setOrder(0); // 필터는 낮은거부터 실행이 된다
+		bean.setOrder(0);
 		return bean;
 	}
+	
 }

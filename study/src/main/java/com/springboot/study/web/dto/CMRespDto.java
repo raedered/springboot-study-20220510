@@ -3,14 +3,15 @@
  * 
  * Version Information: 1.0.0
  * 
- * Copyright Notice: jaehyeon(2022.05.11 ~ 2027.05.11)
+ * Copyright Notice: junil(2022.05.11 ~ 2027.05.11)
+ * 
  */
 
 //패키지 정보
 package com.springboot.study.web.dto;
 
 //import 정보
-import java.util.Scanner; // 왜 들고 왔는지
+import java.util.Scanner; //왜 들고 왔는지
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
  * 
  * Class Description(클래스 정보)
  * 
- * @author raedered
+ * @author code1218, code1217
  * @version 1.0.0
  * 
  */
@@ -36,7 +37,7 @@ public class CMRespDto<T> {
 	private int code;
 	
 	/*
-	 * 응답 메세지
+	 * 응답 메세지 내용
 	 */
 	private String msg;
 	
@@ -44,4 +45,13 @@ public class CMRespDto<T> {
 	 * 응답 데이터
 	 */
 	private T data;
+	
+	
 }
+
+
+
+
+
+
+

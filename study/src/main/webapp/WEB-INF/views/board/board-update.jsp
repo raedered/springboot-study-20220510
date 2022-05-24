@@ -22,12 +22,14 @@
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><textarea class = "textarea-item"></textarea></td>
+					<td><textarea class="textarea-item"></textarea></td>
 				</tr>
 			</table>
-			<button type="button" class="submit-btn">작성하기</button>
+			<button type="button" class="submit-btn">수정하기</button>
 		</div>
+		
 	</div>
+	
 	<script type="text/javascript" src="/js/board-update.js"></script>
 </body>
 </html>

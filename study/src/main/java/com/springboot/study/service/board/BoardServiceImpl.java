@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.springboot.study.domain.board.BoardMst;
 import com.springboot.study.domain.board.BoardRepository;
-import com.springboot.study.web.dto.board.BoardInsertReqdto;
+import com.springboot.study.web.dto.board.BoardInsertReqDto;
 import com.springboot.study.web.dto.board.BoardRespDto;
 import com.springboot.study.web.dto.board.BoardUpdateReqDto;
 
@@ -16,25 +16,25 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class BoardServiceImpl implements BoardService{
+public class BoardServiceImpl implements BoardService {
 	
-	private final BoardRepository boardRepositroy;
+	private final BoardRepository boardRepository;
 	
 	@Override
 	public List<BoardRespDto> getBoardListAll() throws Exception {
 		List<BoardRespDto> boardRespDtos = new ArrayList<BoardRespDto>();
-//		boardRespDtos.size();
+		boardRespDtos.size();
 		
-		List<Map<String, Object>> boardListAll = boardRepositroy.getBoardListAll();
+		List<Map<String, Object>> boardListAll = boardRepository.getBoardListAll();
 		for(Map<String, Object> boardMap : boardListAll) {
 			boardRespDtos.add(BoardRespDto.builder()
-				.boardCode((Integer) (boardMap.get("board_code")))
-				.title((String) (boardMap.get("board_title")))
-				.content((String) (boardMap.get("board_content")))
-				.usercode((Integer) (boardMap.get("board_writer")))
-				.username((String) (boardMap.get("board_username")))
-				.boardCount((Integer) (boardMap.get("board_count")))
-				.build());
+					.boardCode((Integer) (boardMap.get("board_code")))
+					.title((String) (boardMap.get("board_title")))
+					.content((String) (boardMap.get("board_content")))
+					.usercode((Integer) (boardMap.get("board_writer")))
+					.username((String) (boardMap.get("board_username")))
+					.boardCount((Integer) (boardMap.get("board_count")))
+					.build());
 		}
 		return boardRespDtos;
 	}
@@ -43,36 +43,39 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardRespDto> getBoardListByPage(int page) throws Exception {
 		List<BoardRespDto> boardRespDtos = new ArrayList<BoardRespDto>();
 		
-		List<Map<String, Object>> boardListAll = boardRepositroy.getBoardListByPage((page -1) * 5);
+		List<Map<String, Object>> boardListAll = boardRepository.getBoardListByPage((page - 1) * 5);
+		System.out.println(boardListAll);
 		for(Map<String, Object> boardMap : boardListAll) {
 			boardRespDtos.add(BoardRespDto.builder()
-				.boardCode((Integer) (boardMap.get("board_code")))
-				.title((String) (boardMap.get("board_title")))
-				.content((String) (boardMap.get("board_content")))
-				.usercode((Integer) (boardMap.get("board_writer")))
-				.username((String) (boardMap.get("board_username")))
-				.boardCount((Integer) (boardMap.get("board_count")))
-				.boardCountAll((Long) (boardMap.get("board_count_all")))
-				.build());
+					.boardCode((Integer) (boardMap.get("board_code")))
+					.title((String) (boardMap.get("board_title")))
+					.content((String) (boardMap.get("board_content")))
+					.usercode((Integer) (boardMap.get("board_writer")))
+					.username((String) (boardMap.get("board_username")))
+					.boardCount((Integer) (boardMap.get("board_count")))
+					.boardCountAll((Long) (boardMap.get("board_count_all")))
+					.build());
 		}
 		return boardRespDtos;
 	}
 	
 	@Override
-	public int createBoard(BoardInsertReqdto boardInsertReqdto) throws Exception {
+	public int createBoard(BoardInsertReqDto boardInsertReqDto) throws Exception {
 		
-		BoardMst boardMst = boardInsertReqdto.toBoardMstEntitiy();
+		BoardMst boardMst = boardInsertReqDto.toBoardMstEntity();
 		
-		int result = boardRepositroy.insertBoard(boardMst);
+		int result = boardRepository.insertBoard(boardMst);
+		
 		if(result > 0) {
 			return boardMst.getBoard_code();
 		}
+		
 		return 0;
 	}
 	
 	@Override
 	public BoardRespDto getBoard(int boardCode) throws Exception {
-		Map<String, Object> boardMap = boardRepositroy.getBoardByBoardCode(boardCode);
+		Map<String, Object> boardMap = boardRepository.getBoardByBoardCode(boardCode);
 		return BoardRespDto.builder()
 				.boardCode((Integer) (boardMap.get("board_code")))
 				.title((String) (boardMap.get("board_title")))
@@ -81,16 +84,17 @@ public class BoardServiceImpl implements BoardService{
 				.username((String) (boardMap.get("board_username")))
 				.boardCount((Integer) (boardMap.get("board_count")))
 				.build();
+				
 	}
-
+	
 	@Override
 	public int updateBoard(int boardCode, BoardUpdateReqDto boardUpdateReqDto) throws Exception {
 		BoardMst boardMst = boardUpdateReqDto.toBoardMstEntity(boardCode);
-		return boardRepositroy.updateBoard(boardMst) > 0 ? boardCode : 0;
+		return boardRepository.updateBoard(boardMst) > 0 ? boardCode : 0;
 	}
 	
 	@Override
 	public int deleteBoard(int boardCode) throws Exception {
-		return boardRepositroy.deleteBoard(boardCode) > 0 ? boardCode : 0;
+		return boardRepository.deleteBoard(boardCode) > 0 ? boardCode : 0;
 	}
 }

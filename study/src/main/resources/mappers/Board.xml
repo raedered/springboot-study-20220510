@@ -9,12 +9,12 @@
 		<id column="board_content" property="board_content"/>
 		<id column="board_writer" property="board_writer"/>
 		<id column="board_username" property="board_username"/>
-		<id column="board_count" property="board_count"/>
-		<id column="board_count_all" property="board_count_all"/>
+		<id column="board_count" property="board_count"/>		
+		<id column="board_count_all" property="board_count_all"/>				
 		<id column="create_date" property="create_date"/>
 		<id column="update_date" property="update_date"/>
 	</resultMap>
-	
+
 	<select id="getBoardListAll" resultMap="boardMap">
 		select
 			bm.board_code,
@@ -27,18 +27,18 @@
 			bm.update_date
 		from
 			board_mst bm
-			left outer join user_mst um on(um.user_code = bm.board_writer)
+			left outer join user_mst um on(um.user_code = bm.board_writer);
 	</select>
 	
 	<select id="getBoardListByPage" parameterType="Integer" resultMap="boardMap">
-	select
+		select
 			bm.board_code,
 			bm.board_title,
 			bm.board_content,
 			bm.board_writer,
 			um.username as board_username,
 			bm.board_count,
-			(select count(*)from board_mst) as board_count_all,
+			(select count(*) from board_mst) as board_count_all,
 			bm.create_date,
 			bm.update_date
 		from
@@ -47,7 +47,8 @@
 		order by
 			board_code desc
 		limit #{index}, 5;
-		</select>
+	</select>
+
 
 	<insert id="insertBoard" parameterType="com.springboot.study.domain.board.BoardMst"
 	useGeneratedKeys="true" keyProperty="board_code">
@@ -62,6 +63,7 @@
 			now(),
 			now()
 		);
+	
 	</insert>
 	
 	<select id="getBoardByBoardCode" parameterType="Integer" resultMap="boardMap">
@@ -89,7 +91,8 @@
 			board_title = #{board_title},
 			board_content = #{board_content}
 		where
-			board_code = #{board_code}
+			board_code = #{board_code};	
+		
 	</update>
 	
 	<delete id="deleteBoard" parameterType="Integer">
@@ -97,6 +100,6 @@
 		from
 			board_mst
 		where
-			board_code = #{board_code}
+			board_code = #{board_code};
 	</delete>
 </mapper>

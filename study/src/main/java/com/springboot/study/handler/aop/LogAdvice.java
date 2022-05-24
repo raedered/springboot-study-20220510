@@ -20,30 +20,39 @@ public class LogAdvice {
 	public Object logging(ProceedingJoinPoint pjp) throws Throwable {
 		long startAt = System.currentTimeMillis();
 		
-		Map<String, Object> params = getParams(pjp);
+		Map<String, Object> params = getPrams(pjp);
 		
-		LOGGER.info("------Advice Call: {}({}) = {}", pjp.getSignature().getDeclaringTypeName(),
-				pjp.getSignature().getName(),params);
+		LOGGER.info("-------Advice Call: {}({}) = {}", pjp.getSignature().getDeclaringTypeName(),
+				pjp.getSignature().getName(), params);
 		
 		Object result = pjp.proceed();
 		
 		long endAt = System.currentTimeMillis();
 		
-		LOGGER.info("------Advice End: {}({}) = {}", pjp.getSignature().getDeclaringTypeName(),
-				pjp.getSignature().getName(),result, endAt - startAt);
+		LOGGER.info("-------Advice End: {}({}) = {} ({}ms)", pjp.getSignature().getDeclaringTypeName(),
+				pjp.getSignature().getName(), result, endAt - startAt);
 		
 		return result;
 	}
 	
-	private Map<String, Object> getParams(ProceedingJoinPoint pjp){
+	private Map<String, Object> getPrams(ProceedingJoinPoint pjp){
 		
 		Map<String, Object> params = new HashMap<String, Object>();
+		
 		Object[] args = pjp.getArgs();
-		String[] argNames = ((CodeSignature)pjp.getSignature()).getParameterNames();
+		String[] argNames = ((CodeSignature) pjp.getSignature()).getParameterNames();
+		
 		for(int i = 0; i < args.length; i++) {
 			params.put(argNames[i], args[i]);
 		}
 		
 		return params;
 	}
+	
 }
+
+
+
+
+
+

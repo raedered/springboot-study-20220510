@@ -13,10 +13,10 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
+	width: 100%
 }
 
-.board-list-table{
+.board-list-table {
 	border: 1px solid black;
 	border-collapse: collapse;
 }
@@ -34,7 +34,8 @@ td {
 .option-buttons {
 	display: flex;
 	justify-content: flex-end;
-	
 	margin-top: 10px;
 	width: 50%;
 }
+
+

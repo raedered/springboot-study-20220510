@@ -5,7 +5,7 @@ import java.util.Map;
 import lombok.Getter;
 
 @Getter
-public class CustomValidationApiException extends RuntimeException{
+public class CustomValidationApiException extends RuntimeException {
 
 	/**
 	 * 객체를 구분할 때 사용!
@@ -22,4 +22,5 @@ public class CustomValidationApiException extends RuntimeException{
 		super(message);
 		this.errorMap = errorMap;
 	}
+
 }

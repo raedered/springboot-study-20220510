@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class BoardUpdateReqDto {
-	
 	@NotBlank
 	private String title;
 	@NotBlank

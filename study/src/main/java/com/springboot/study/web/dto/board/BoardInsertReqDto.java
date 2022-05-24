@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class BoardInsertReqdto {
+public class BoardInsertReqDto {
 	@NotBlank
 	private String title;
 	@NotBlank
@@ -20,7 +20,7 @@ public class BoardInsertReqdto {
 	@NotNull
 	private int usercode;
 	
-	public BoardMst toBoardMstEntitiy() {
+	public BoardMst toBoardMstEntity() {
 		return BoardMst.builder()
 				.board_title(title)
 				.board_content(content)
@@ -28,3 +28,10 @@ public class BoardInsertReqdto {
 				.build();
 	}
 }
+
+
+
+
+
+
+

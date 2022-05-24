@@ -1,5 +1,6 @@
-##서버포트 설정
+##서버 포트 설정
 #server.port=8000
+#
 ##인코딩 UTF-8설정
 #server.servlet.encoding.charset=UTF-8
 #server.servlet.encoding.enabled=true
@@ -7,6 +8,7 @@
 #server.servlet.encoding.force-request=true
 #server.servlet.encoding.force-response=true
 #server.tomcat.uri-encoding=UTF-8
+#
 ##뷰리졸버 설정
 #spring.mvc.view.prefix=/WEB-INF/views/
 #spring.mvc.view.suffix=.jsp
@@ -37,7 +39,23 @@ spring:
     user:
       name: test
       password: 1234
-    
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 421835711385-1m385181f86graanp23kbqpku1mm4q6f.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+            - email
+            - profile
+          
 mybatis:
   mapper-locations:
-  - /mappers/*xml
+  - /mappers/*.xml
+    
+    
+    
+    
+    
+    
+    

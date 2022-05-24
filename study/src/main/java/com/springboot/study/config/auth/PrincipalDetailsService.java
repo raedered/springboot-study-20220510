@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class PrincipalDetailsService implements UserDetailsService{
+public class PrincipalDetailsService implements UserDetailsService {
 	
 	private final UserRepository userRepository;
 	
@@ -21,6 +21,11 @@ public class PrincipalDetailsService implements UserDetailsService{
 		User userEntity = userRepository.findUserByUsername(username);
 		System.out.println("로그인 요청?");
 		
+		if(userEntity == null) {
+			return null;
+		}
+		
 		return new PrincipalDetails(userEntity);
 	}
+	
 }

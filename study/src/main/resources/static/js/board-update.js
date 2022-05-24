@@ -64,3 +64,4 @@ function submit(){
 	.then(data => {location.href = "/board-info/" + data.data;})
 }
 
+
