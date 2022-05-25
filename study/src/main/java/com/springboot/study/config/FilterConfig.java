@@ -2,7 +2,6 @@ package com.springboot.study.config;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import com.springboot.study.filter.TestFilter1;
 import com.springboot.study.filter.TestFilter2;
