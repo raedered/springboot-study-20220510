@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.study.domain.user.UserRepository">
+	<insert id="insertUser" parameterType="com.springboot.study.domain.user.User"
+	useGeneratedKeys="true" keyProperty="user_code">
+		insert into
+			user_mst
+		values(
+			0,
+			#{email},
+			#{name},
+			#{username},
+			#{oAuth2_username},
+			#{password},
+			#{roles},
+			#{provider},
+			now(),
+			now()
+		);
+	</insert>
+	
+	<select id="findUserByUsername" parameterType="String" resultType="com.springboot.study.domain.user.User">
+		select
+			um.*,
+			ud.profile_img_url
+		from
+			user_mst um
+			left outer join user_dtl ud on(ud.user_code = um.user_code)
+		where
+			username = #{username};
+	
+	</select>
+	
+	<select id="findOAuth2UserByOAuth2Username" parameterType="String" resultType="com.springboot.study.domain.user.User">
+		select
+			um.*,
+			ud.profile_img_url
+		from
+			user_mst um
+			left outer join user_dtl ud on(ud.user_code = um.user_code)
+		where
+			oauth2_username = #{oAuth2Username};
+	
+	</select>
+	
+	<update id="updateProfileImg" parameterType="com.springboot.study.domain.user.User">
+		update
+			user_dtl
+		set
+			profile_img_url = #{profile_img_url}
+		where
+			user_code = #{user_code}
+	</update>
+</mapper>
+
+
+
+
+
+
